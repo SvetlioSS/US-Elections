@@ -42,7 +42,7 @@ describe("USElection", function () {
     });
 
     it("Should throw on trying to end election with not the owner", async function () {
-        expect(usElection.connect(addr1).endElection()).to.be.revertedWith('Not invoked by the owner');
+        expect(usElection.connect(addr1).endElection()).to.be.revertedWith('Ownable: caller is not the owner');
         expect(await usElection.electionEnded()).to.equal(false); // Not Ended
     });
 
