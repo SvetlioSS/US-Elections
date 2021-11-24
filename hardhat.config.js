@@ -13,6 +13,12 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   }
 });
 
+task("deploy-local", "Deploys contract on a local network")
+  .setAction(async () => {
+    const deployElectionContract = require("./scripts/deploy-local");
+    await deployElectionContract();
+  });
+
 task("deploy-testnets", "Deploys contract on a provided network")
   .setAction(async () => {
     const deployElectionContract = require("./scripts/deploy");
@@ -28,8 +34,8 @@ subtask("print", "Prints a message")
 task("deploy-mainnet", "Deploys contract on a provided network")
   .addParam("privateKey", "Please provide the private key")
   .setAction(async ({ privateKey }) => {
-      const deployElectionContract = require("./scripts/deploy-with-param");
-      await deployElectionContract(privateKey);
+    const deployElectionContract = require("./scripts/deploy-with-params");
+    await deployElectionContract(privateKey);
   });
 
 // You need to export an object to set up your config
